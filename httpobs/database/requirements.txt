@@ -1,2 +1,2 @@
-psycopg2-binary
+psycopg2>=2.8,<2.9 --no-binary psycopg2
 redis==2.10.6
