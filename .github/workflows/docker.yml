@@ -10,7 +10,7 @@ jobs:
   build-and-push-image:
     name: "Build docker image and publish on github packages"
     runs-on: ubuntu-latest
-    if: contains(github.ref, 'refs/heads/main')
+    if: contains(github.ref, 'refs/heads/master')
     #    needs:
     #      - check
     permissions:
