@@ -11,3 +11,5 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade . && pip install --upgrade -r requirements.txt
+
+CMD python server.py
