@@ -1,9 +1,15 @@
 import json
+import sys
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib import parse
 from urllib.parse import parse_qs
 from httpobs.scanner.local import scan
 import os
+import logging
+
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 class ApiHandler(BaseHTTPRequestHandler):
     def _send_content(self, data, status=200, content_type="text/plain"):
@@ -33,9 +39,12 @@ class ApiHandler(BaseHTTPRequestHandler):
         return self._send_content("", status=404)
 
 
+
+
 def run(server_class=HTTPServer, handler_class=ApiHandler):
-    server_address = ('', os.environ.get("API_PORT", 9000))
+    server_address = ('0.0.0.0', os.environ.get("API_PORT", 9000))
     httpd = server_class(server_address, handler_class)
+    logger.info("Server started")
     httpd.serve_forever()
 
 
