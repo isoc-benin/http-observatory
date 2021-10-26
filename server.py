@@ -39,14 +39,12 @@ class ApiHandler(BaseHTTPRequestHandler):
         return self._send_content("", status=404)
 
 
-
-
-def run(server_class=HTTPServer, handler_class=ApiHandler):
-    server_address = ('0.0.0.0', os.environ.get("API_PORT", 9000))
+def run(server_class=HTTPServer, handler_class=ApiHandler, host='0.0.0.0', port=9000):
+    server_address = (host, port)
     httpd = server_class(server_address, handler_class)
-    logger.info("Server started")
+    logger.info(f"Server listening at {host}:{port}")
     httpd.serve_forever()
 
 
 if __name__ == "__main__":
-    run()
+    run(port=os.environ.get("API_PORT", 9000))
