@@ -40,7 +40,7 @@ class ApiHandler(BaseHTTPRequestHandler):
 
 
 def run(server_class=HTTPServer, handler_class=ApiHandler, host='0.0.0.0', port=9000):
-    server_address = (host, port)
+    server_address = (host, int(port))
     httpd = server_class(server_address, handler_class)
     logger.info(f"Server listening at {host}:{port}")
     httpd.serve_forever()
